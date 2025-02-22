@@ -1589,7 +1589,11 @@ static void R_Register( void )
 
 #ifdef USE_FBO
 	r_ext_multisample = ri.Cvar_Get( "r_ext_multisample", "0", CVAR_ARCHIVE_ND );
+#ifdef MACOS_X
+	ri.Cvar_CheckRange( r_ext_multisample, "0", "4", CV_INTEGER );
+#else
 	ri.Cvar_CheckRange( r_ext_multisample, "0", "8", CV_INTEGER );
+#endif
 	ri.Cvar_SetDescription( r_ext_multisample, "For anti-aliasing geometry edges, valid values: 0|2|4|6|8. Requires \\r_fbo 1." );
 	ri.Cvar_SetGroup( r_ext_multisample, CVG_RENDERER );
 	r_hdr = ri.Cvar_Get( "r_hdr", "0", CVAR_ARCHIVE_ND | CVAR_LATCH );

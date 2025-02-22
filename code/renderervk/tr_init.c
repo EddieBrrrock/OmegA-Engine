@@ -1799,7 +1799,11 @@ static void R_Register( void )
 	ri.Cvar_SetDescription(r_bloom, "Enables bloom post-processing effect. Requires \\r_fbo 1.");
 
 	r_ext_multisample = ri.Cvar_Get( "r_ext_multisample", "0", CVAR_ARCHIVE_ND | CVAR_LATCH );
+#ifdef MACOS_X
+	ri.Cvar_CheckRange( r_ext_multisample, "0", "16", CV_INTEGER );
+#else
 	ri.Cvar_CheckRange( r_ext_multisample, "0", "64", CV_INTEGER );
+#endif
 	ri.Cvar_SetDescription( r_ext_multisample, "For anti-aliasing geometry edges, valid values: 0|2|4|6|8. Requires \\r_fbo 1." );
 
 	r_ext_supersample = ri.Cvar_Get( "r_ext_supersample", "0", CVAR_ARCHIVE_ND | CVAR_LATCH );
