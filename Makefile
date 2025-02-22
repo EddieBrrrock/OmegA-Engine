@@ -33,14 +33,7 @@ BUILD_SERVER     = 0
 USE_SDL          = 1
 USE_CURL         = 1
 USE_LOCAL_HEADERS= 1
-
-ifndef USE_SYSTEM_JPEG
-  ifeq ($(COMPILE_PLATFORM), linux)
-    USE_SYSTEM_JPEG=1
-  else
-    USE_SYSTEM_JPEG=0
-  endif
-endif
+USE_SYSTEM_JPEG  = 0
 
 USE_VULKAN       = 1
 USE_OPENGL       = 1
@@ -115,6 +108,12 @@ ifeq ($(PLATFORM),mingw64)
   MINGW=1
   ifeq ($(ARCH),x86)
     USE_SDL=0
+  endif
+endif
+
+ifeq ($(COMPILE_PLATFORM),linux)
+  ifneq ($(MINGW),1)
+    USE_SYSTEM_JPEG=1
   endif
 endif
 
