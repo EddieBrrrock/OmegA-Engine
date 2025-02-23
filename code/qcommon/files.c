@@ -4767,6 +4767,7 @@ static void FS_Startup( void ) {
 		// handle multiple basegames:
 		for ( i = 0; i < basegame_cnt; i++ ) {
 			FS_AddGameDirectory( fs_apppath->string, basegames[i] );
+			FS_AddGameDirectory( fs_apppath->string, DEFAULT_GAME );
 		}
 	}
 #endif
